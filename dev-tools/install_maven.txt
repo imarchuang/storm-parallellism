@@ -1,0 +1,35 @@
+//update the package index
+sudo apt-get update
+//install maven
+sudo apt-get install maven
+
+
+
+/*--------------------------------------------------------------------------------
+install downloaded package of specific version(say, maven-3.1.1)
+	cd ~/Downloads
+	wget http://apache.mirrors.timporter.net/maven/maven-3/3.1.1/binaries/apache-maven-3.1.1-bin.tar.gz
+	tar -xzvf apache-maven-3.1.1-bin.tar.gz
+	sudo cp -R apache-maven-3.1.1 /usr/local/
+	ln -s /usr/local/apache-maven-3.1.1/ /usr/local/apache-maven
+*/
+
+
+//managing Maven
+//Edit ~/.profile with gedit ~/.profile
+// or Edit system-wide profile /etc/profile
+
+sudo gedit /etc/profile
+
+//add the following lines
+	export M2_HOME=/usr/local/apache-maven
+	export M2=$M2_HOME/bin
+	export MAVEN_OPTS="-Xms256m -Xmx512m"
+	export PATH=$M2:$PATH 
+
+//source out the profile
+source /etc/profile
+
+//testing the setup:
+mvn -version
+
