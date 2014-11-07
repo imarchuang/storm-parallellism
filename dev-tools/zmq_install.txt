@@ -1,0 +1,31 @@
+/****************************************************************
+Make sure the JAVA_HOME is pointing to the jdk bin folder
+	sudo gedit /etc/profile
+		export JAVA_HOME=/usr/lib/jvm/java-1.6.0-openjdk-amd64
+		export JRE_HOME=/usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java
+	source /etc/profile   
+****************************************************************/
+
+wget http://download.zeromq.org/zeromq-4.0.5.tar.gz
+tar zxf zeromq-4.0.5.tar.gz 
+cd zeromq-4.0.5
+./configure
+make
+make install
+sudo ldconfig (更新LD_LIBRARY_PATH)
+zeromq安装完成。
+注意：如有有依赖报错，需要安装：
+jzmq dependencies 依赖包
+sudo yum install uuid*
+sudo yum install libtool
+sudo yum install libuuid 
+sudo yum install libuuid-devel
+
+To build on UNIX-like systems
+    1. Make sure that libtool, pkg-config, build-essential, autoconf, and automake are installed.
+    2. Check whether uuid-dev package, uuid/e2fsprogs RPM or equivalent on your system is installed.
+    3. Unpack the .tar.gz source archive.
+    4. Run ./configure
+	5. Run make
+	6. Run "sudo make install" //install ZeroMQ system-wide
+	7. On Linux, run "sudo ldconfig" after installing ZeroMQ.

@@ -1,0 +1,149 @@
+/*****A few notes about Zookeeper deployment:
+
+1. It’s critical that you run Zookeeper under supervision, since Zookeeper is fail-fast and will exit the process if it encounters any error case.
+2. It’s critical that you set up a cron to compact Zookeeper’s data and transaction logs. The Zookeeper daemon does not do this on its own, and if you don’t set up a cron, Zookeeper will quickly run out of disk space. 
+***/
+
+//download zookeeper src distribution
+http://mirror.its.dal.ca/apache/zookeeper/stable/
+
+//unzip the .tar.gz file (If you have GNU tar (Linux system) you can use the z option directly)
+tar xvzf zookeeper-3.4.6.tar.gz
+
+//manage the installation
+/***
+*switch to root login first
+sudo -i
+***/
+cp -R zookeeper-3.4.6 /usr/local/
+ln -s /usr/local/zookeeper-3.4.6/ /usr/local/zookeeper
+
+//set up the necessary env variables (设置ZOOKEEPER_HOME和ZOOKEEPER_HOME/bin) 
+vim /etc/profile //this is a system-wide .profile file for the Bourne shell (sh(1)) and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+export ZOOKEEPER_HOME="/usr/local/zookeeper"
+export PATH=$PATH:$ZOOKEEPER_HOME/bin
+
+/************************************************************************/
+//setting up the env variables can also be down via:
+1.sudo nano /etc/environment
+2.add whatever env var needed
+3.source /etc/environment
+/************************************************************************/
+
+//config
+cd zookeeper-3.4.6/conf/
+//create a config file
+vi zoo.cfg
+//config it like below:
+tickTime=2000
+dataDir=/var/zookeeper
+clientPort=2181
+
+//start the server
+bin/zkServer.sh start
+/*----------------------------------------------------------------------------------*/
+marc@ubuntu:~/Downloads/zookeeper-3.4.6/bin$ ./zkServer.sh start
+JMX enabled by default
+Using config: /home/marc/Downloads/zookeeper-3.4.6/bin/../conf/zoo.cfg
+Starting zookeeper ... STARTED
+/*----------------------------------------------------------------------------------*/
+
+//stop the server
+bin/zkServer.sh stop
+/*----------------------------------------------------------------------------------*/
+marc@ubuntu:~/Downloads/zookeeper-3.4.6/bin$ ./zkServer.sh stop
+JMX enabled by default
+Using config: /home/marc/Downloads/zookeeper-3.4.6/bin/../conf/zoo.cfg
+Stopping zookeeper ... STOPPED
+/*----------------------------------------------------------------------------------*/
+
+//Connecting to ZooKeeper via Java
+bin/zkCli.sh -server 127.0.0.1:2181
+(bin/zkCli.sh -server)
+
+//general cmd to walk thru
+help
+ZooKeeper -server host:port cmd args
+	connect host:port
+	get path [watch]
+	ls path [watch]
+	set path data [version]
+	rmr path
+	delquota [-n|-b] path
+	quit 
+	printwatches on|off
+	create [-s] [-e] path data acl
+	stat path [watch]
+	close 
+	ls2 path [watch]
+	history 
+	listquota path
+	setAcl path acl
+	getAcl path
+	sync path
+	redo cmdno
+	addauth scheme auth
+	delete path [version]
+	setquota -n|-b val path
+	
+[zk: localhost:2181(CONNECTED) 2] ls /
+[zookeeper]
+
+//create a new znode by running create /zk_test my_data. This creates a new znode and associates the string "my_data" with the node.
+[zk: localhost:2181(CONNECTED) 3] create /zk_test my_data
+Created /zk_test
+
+//Notice that the zk_test directory has now been created. 
+[zk: localhost:2181(CONNECTED) 4] ls /
+[zookeeper, zk_test]
+
+//verify that the data was associated with the znode by running the get command,
+[zk: localhost:2181(CONNECTED) 5] get /zk_test
+my_data
+cZxid = 0x2
+ctime = Sun Nov 02 12:58:08 PST 2014
+mZxid = 0x2
+mtime = Sun Nov 02 12:58:08 PST 2014
+pZxid = 0x2
+cversion = 0
+dataVersion = 0
+aclVersion = 0
+ephemeralOwner = 0x0
+dataLength = 7
+numChildren = 0
+
+//We can change the data associated with zk_test by issuing the set command
+[zk: localhost:2181(CONNECTED) 6] set /zk_test junk
+cZxid = 0x2
+ctime = Sun Nov 02 12:58:08 PST 2014
+mZxid = 0x3
+mtime = Sun Nov 02 12:58:57 PST 2014
+pZxid = 0x2
+cversion = 0
+dataVersion = 1
+aclVersion = 0
+ephemeralOwner = 0x0
+dataLength = 4
+numChildren = 0
+
+//run the get again to verify the data
+[zk: localhost:2181(CONNECTED) 7] get /zk_test
+junk
+cZxid = 0x2
+ctime = Sun Nov 02 12:58:08 PST 2014
+mZxid = 0x3
+mtime = Sun Nov 02 12:58:57 PST 2014
+pZxid = 0x2
+cversion = 0
+dataVersion = 1
+aclVersion = 0
+ephemeralOwner = 0x0
+dataLength = 4
+numChildren = 0
+
+//delete the node by issuing
+[zk: localhost:2181(CONNECTED) 8] delete /zk_test
+[zk: localhost:2181(CONNECTED) 9] ls /
+[zookeeper]
+[zk: localhost:2181(CONNECTED) 10] 
+

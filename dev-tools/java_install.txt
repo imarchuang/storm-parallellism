@@ -1,0 +1,36 @@
+//update the package index
+sudo apt-get update
+//check if Java is not already installed
+java -version
+// returns "The program java can be found in the following packages", Java hasn't been installed yet,
+/*--------------------------------------------------------------------------------*/
+marc@ubuntu:~$ java -version
+The program 'java' can be found in the following packages:
+ * default-jre
+ * gcj-4.8-jre-headless
+ * openjdk-7-jre-headless
+ * gcj-4.6-jre-headless
+ * openjdk-6-jre-headless
+Try: sudo apt-get install <selected package>
+/*--------------------------------------------------------------------------------*/
+sudo apt-get install openjdk-6-jdk
+
+
+//managing Java
+sudo update-alternatives --config java
+/** RETURN:
+There is only one alternative in link group java (providing /usr/bin/java): /usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java
+Nothing to configure.
+*/
+
+//Copy the path from your preferred installation and then edit the file /etc/environment
+sudo nano /etc/environment
+//Add the JAVA_HOME into this file
+JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64/jre/bin/java
+//That should be enough to set the environment variable. Now reload this file:
+source /etc/environment
+
+//testing the setup:
+echo $JAVA_HOME
+java -version
+

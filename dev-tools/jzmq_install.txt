@@ -1,0 +1,42 @@
+install jzmq (assuming zmq has been successfully installed):
+    1. Make sure that libtool, pkg-config, build-essential, autoconf, and automake are installed.
+    2. Check whether uuid-dev package, uuid/e2fsprogs RPM or equivalent on your system is installed.
+
+- wget https://github.com/nathanmarz/jzmq/archive/master.zip
+- cd /usr/local/
+  - sudo unzip jzmq-master.zip (OR master.zip)
+  - cd jzmq-master
+  - INSTALL:
+    - Potentially Missing Pre-req:
+      - libtool: sudo apt-get install libtool
+      - autoconf: sudo apt-get install autoconf
+      - (automake was already installed)
+    - sudo ./autogen.sh
+    - **Edit ./configure file to add "export JAVA_HOME=/usr/lib/jvm/java-6-openjdk-amd64"**
+    - sudo ./configure
+    - cd src
+    - sudo touch classdist_noinst.stamp
+    - sudo CLASSPATH=.:./.:$CLASSPATH javac -d . org/zeromq/ZMQ.java org/zeromq/ZMQException.java org/zeromq/ZMQQueue.java org/zeromq/ZMQForwarder.java org/zeromq/ZMQStreamer.java
+    - cd ..
+    - sudo make
+    - sudo make install
+	
+	
+upon "sudo make", the following error poped out:
+make[1]: *** No rule to make target `classdist_noinst.stamp', needed by `org/zeromq/ZMQ.class'.  Stop.
+
+//solving workaround:
+1. Download JZMQ and navigate to the the src directory
+	git clone https://github.com/nathanmarz/jzmq.git
+	cd jzmq
+	cd src
+2. Once in the src directory run the touch command to create a file and then redefine the classpath.
+	touch classdist_noinst.stamp
+	CLASSPATH=.:./.:$CLASSPATH javac -d . org/zeromq/ZMQ.java org/zeromq/ZMQException.java org/zeromq/ZMQQueue.java org/zeromq/ZMQForwarder.java org/zeromq/ZMQStreamer.java
+3. Navigate back to the /jzmq and run make
+	cd ..
+	./autogen.sh 
+	/***If you get this error "autogen.sh: error: could not find pkg-config.pkg-config is required to run autogen.sh", then install pkg-config. In Ubuntu "sudo apt-get install pkg-config" and again run the above command.***/
+	./configure
+	make
+	sudo make install
