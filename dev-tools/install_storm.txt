@@ -1,0 +1,158 @@
+//download storm bin distribution
+wget http://mirror.tcpdiag.net/apache/incubator/storm/apache-storm-0.9.2-incubating/apache-storm-0.9.2-incubating.tar.gz
+
+//unzip the .tar.gz file (If you have GNU tar (Linux system) you can use the z option directly)
+tar xvzf apache-storm-0.9.2-incubating.tar.gz
+
+//create a softlink in ~/Downloads/
+ln -s apache-storm-0.9.2-incubating apache-storm
+
+/***manage the installation***/
+//set up the necessary env variables (ZOOKEEPER_HOME和ZOOKEEPER_HOME/bin) 
+//this is a system-wide .profile file for the Bourne shell (sh(1)) 
+//and Bourne compatible shells (bash(1), ksh(1), ash(1), ...).
+sudo gedit /etc/profile 
+//add in the following 2 lines
+export STORM_HOME="/home/marc/Downloads/apache-storm"
+export PATH=$PATH:$STORM_HOME/bin
+//source it out afterwards
+source /etc/profile
+
+
+/************************************************************************/
+//setting up the env variables can also be down via:
+1.sudo nano /etc/environment
+2.add whatever env var needed
+3.source /etc/environment
+/************************************************************************/
+
+//configure storm
+cd $STORM_HOME/conf/
+
+//create a config file by copying from storm.yaml.example to storm.yaml
+cp storm.yaml.example storm.yaml
+
+//config it like below:
+	storm.zookeeper.servers:
+	- "localhost"
+
+	storm.zookeeper.port: 2181
+
+	nimbus.host: "localhost"
+
+	nimbus.thrift.port: 6627
+
+	ui.port: 8772
+
+	storm.local.dir: "/home/marc/Downloads/apache-storm/data"
+
+	java.library.path: "/usr/lib/jvm/java-6-openjdk-i386"
+
+	supervisor.slots.ports:
+
+	- 6700
+	- 6701
+
+	
+/******************* start zookeeper FIRST  ***************/
+REMEMBER to start zookeeper server first before starting any storm services
+/******************* start zookeeper FIRST   ***************/	
+//start the servers
+/******************* avoid duplication of defaults.yaml  ***************/
+rename the defaults.yaml to defaults.yaml~
+one in $STORM_HOME/conf/
+the other one in $STORM_HOME/lib/storm-core-0.9.2-incubating.jar
+/******************* avoid duplication of defaults.yaml  ***************/
+/*----------------------------------------------------------------------------------*/
+marc@ubuntu:~/Downloads/apache-storm$ storm nimbus
+Exception in thread "main" java.lang.RuntimeException: Found multiple defaults.yaml resources. You're probably bundling the Storm jars with your topology jar. [jar:file:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/storm-core-0.9.2-incubating.jar!/defaults.yaml, file:/home/marc/Downloads/apache-storm-0.9.2-incubating/conf/defaults.yaml]
+	at backtype.storm.utils.Utils.findAndReadConfigFile(Utils.java:140)
+	at backtype.storm.utils.Utils.readDefaultConfig(Utils.java:167)
+	at backtype.storm.utils.Utils.readStormConfig(Utils.java:191)
+	at backtype.storm.config$read_storm_config.invoke(config.clj:121)
+	at backtype.storm.command.config_value$_main.invoke(config_value.clj:22)
+	at clojure.lang.AFn.applyToHelper(AFn.java:161)
+	at clojure.lang.AFn.applyTo(AFn.java:151)
+	at backtype.storm.command.config_value.main(Unknown Source)
+Exception in thread "main" java.lang.RuntimeException: Found multiple defaults.yaml resources. You're probably bundling the Storm jars with your topology jar. [jar:file:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/storm-core-0.9.2-incubating.jar!/defaults.yaml, file:/home/marc/Downloads/apache-storm-0.9.2-incubating/conf/defaults.yaml]
+	at backtype.storm.utils.Utils.findAndReadConfigFile(Utils.java:140)
+	at backtype.storm.utils.Utils.readDefaultConfig(Utils.java:167)
+	at backtype.storm.utils.Utils.readStormConfig(Utils.java:191)
+	at backtype.storm.config$read_storm_config.invoke(config.clj:121)
+	at backtype.storm.command.config_value$_main.invoke(config_value.clj:22)
+	at clojure.lang.AFn.applyToHelper(AFn.java:161)
+	at clojure.lang.AFn.applyTo(AFn.java:151)
+	at backtype.storm.command.config_value.main(Unknown Source)
+/*----------------------------------------------------------------------------------*/
+
+1) Start Nimbus :
+$ storm nimbus
+/*----------------------------------------------------------------------------------*/
+marc@ubuntu:~/Downloads/apache-storm/conf$ storm nimbus
+Running: /usr/lib/jvm/java-6-openjdk-i386/bin/java -server -Dstorm.options= -Dstorm.home=/home/marc/Downloads/
+apache-storm-0.9.2-incubating -Djava.library.path=/usr/lib/jvm/java-6-openjdk-i386 -Dstorm.conf.file= -cp 
+/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/math.numeric-tower-0.0.1.jar:/home/marc/Downloads/
+apache-storm-0.9.2-incubating/lib/ring-core-1.1.5.jar:/home/marc/Downloads/apache-storm-0.9.2-incubating/
+lib/ring-servlet-0.3.11.jar:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/compojure-1.1.3.jar:
+/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/jetty-6.1.26.jar:/home/marc/Downloads/apache-storm-0.9.2-incubating/
+lib/clj-stacktrace-0.2.4.jar:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/jetty-util-6.1.26.jar:/home/marc/
+Downloads/apache-storm-0.9.2-incubating/lib/guava-13.0.jar:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/
+commons-exec-1.1.jar:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/curator-framework-2.4.0.jar:/home/marc/
+Downloads/apache-storm-0.9.2-incubating/lib/hiccup-0.3.6.jar:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/
+commons-logging-1.1.3.jar:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/minlog-1.2.jar:/home/marc/Downloads/
+apache-storm-0.9.2-incubating/lib/asm-4.0.jar:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/tools.logging-0.2.3.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/log4j-over-slf4j-1.6.6.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/reflectasm-1.07-shaded.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/ring-jetty-adapter-0.3.11.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/zookeeper-3.4.5.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/clout-1.0.1.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/jline-2.11.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/commons-fileupload-1.2.1.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/commons-lang-2.5.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/tools.macro-0.1.0.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/netty-3.6.3.Final.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/commons-io-2.4.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/curator-client-2.4.0.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/ring-devel-0.3.11.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/servlet-api-2.5-20081211.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/snakeyaml-1.11.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/commons-codec-1.6.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/netty-3.2.2.Final.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/logback-core-1.0.6.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/clj-time-0.4.1.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/jgrapht-core-0.9.0.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/tools.cli-0.2.4.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/disruptor-2.10.1.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/storm-core-0.9.2-incubating.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/kryo-2.21.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/joda-time-2.0.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/httpclient-4.3.3.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/objenesis-1.2.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/httpcore-4.3.2.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/carbonite-1.4.0.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/servlet-api-2.5.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/clojure-1.5.1.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/chill-java-0.3.5.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/logback-classic-1.0.6.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/json-simple-1.1.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/core.incubator-0.1.0.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/lib/slf4j-api-1.6.5.jar
+:/home/marc/Downloads/apache-storm-0.9.2-incubating/conf -Xmx1024m -Dlogfile.name=nimbus.log 
+-Dlogback.configurationFile=/home/marc/Downloads/apache-storm-0.9.2-incubating/logback/cluster.xml 
+backtype.storm.daemon.nimbus
+/*----------------------------------------------------------------------------------*/
+ 
+2) Start Supervisor ( Do not close previous terminal Open another terminal window and type following )
+$ storm supervisor
+/*----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
+
+3) Start UI ( Open a new terminal, change the directory to storm and start UI . Don’t close the previous terminal)
+$ storm ui
+/*----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
+
+4) Check the UI ( Hit the URL with IP Address of the UI Port defined in storm.yaml file)
+http://localhost:8772
+/*----------------------------------------------------------------------------------*/
+/*----------------------------------------------------------------------------------*/
