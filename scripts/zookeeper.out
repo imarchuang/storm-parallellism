@@ -81,3 +81,149 @@
 2014-11-11 01:02:28,327 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52046
 2014-11-11 01:02:28,328 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@868] - Client attempting to establish new session at /127.0.0.1:52046
 2014-11-11 01:02:28,557 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@617] - Established session 0x1499ba67d30000b with negotiated timeout 20000 for client /127.0.0.1:52046
+2014-11-11 03:28:34,341 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 6389ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 08:23:25,857 [myid:] - INFO  [SessionTracker:ZooKeeperServer@347] - Expiring session 0x1499ba67d300007, timeout of 20000ms exceeded
+2014-11-11 08:23:25,938 [myid:] - INFO  [SessionTracker:ZooKeeperServer@347] - Expiring session 0x1499ba67d30000b, timeout of 20000ms exceeded
+2014-11-11 08:23:25,938 [myid:] - INFO  [SessionTracker:ZooKeeperServer@347] - Expiring session 0x1499ba67d300009, timeout of 20000ms exceeded
+2014-11-11 08:23:25,942 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed session termination for sessionid: 0x1499ba67d300007
+2014-11-11 08:23:25,942 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed session termination for sessionid: 0x1499ba67d30000b
+2014-11-11 08:23:25,942 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed session termination for sessionid: 0x1499ba67d300009
+2014-11-11 08:23:25,957 [myid:] - INFO  [SyncThread:0:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52030 which had sessionid 0x1499ba67d300007
+2014-11-11 08:23:25,959 [myid:] - INFO  [SyncThread:0:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52046 which had sessionid 0x1499ba67d30000b
+2014-11-11 08:23:25,959 [myid:] - INFO  [SyncThread:0:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52033 which had sessionid 0x1499ba67d300009
+2014-11-11 08:23:27,666 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52093
+2014-11-11 08:23:27,686 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@861] - Client attempting to renew session 0x1499ba67d300009 at /127.0.0.1:52093
+2014-11-11 08:23:27,701 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@610] - Invalid session 0x1499ba67d300009 for client /127.0.0.1:52093, probably expired
+2014-11-11 08:23:27,701 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52094
+2014-11-11 08:23:27,733 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52093 which had sessionid 0x1499ba67d300009
+2014-11-11 08:23:27,781 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@861] - Client attempting to renew session 0x1499ba67d300007 at /127.0.0.1:52094
+2014-11-11 08:23:27,781 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@610] - Invalid session 0x1499ba67d300007 for client /127.0.0.1:52094, probably expired
+2014-11-11 08:23:27,781 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52094 which had sessionid 0x1499ba67d300007
+2014-11-11 08:23:27,781 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52095
+2014-11-11 08:23:27,782 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@868] - Client attempting to establish new session at /127.0.0.1:52095
+2014-11-11 08:23:27,792 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52096
+2014-11-11 08:23:27,794 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@861] - Client attempting to renew session 0x1499ba67d30000b at /127.0.0.1:52096
+2014-11-11 08:23:27,795 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@610] - Invalid session 0x1499ba67d30000b for client /127.0.0.1:52096, probably expired
+2014-11-11 08:23:27,795 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52096 which had sessionid 0x1499ba67d30000b
+2014-11-11 08:23:27,856 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52097
+2014-11-11 08:23:27,856 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@868] - Client attempting to establish new session at /127.0.0.1:52097
+2014-11-11 08:23:27,908 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@617] - Established session 0x1499ba67d30000c with negotiated timeout 20000 for client /127.0.0.1:52095
+2014-11-11 08:23:27,922 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@617] - Established session 0x1499ba67d30000d with negotiated timeout 20000 for client /127.0.0.1:52097
+2014-11-11 08:23:27,991 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52098
+2014-11-11 08:23:27,992 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@868] - Client attempting to establish new session at /127.0.0.1:52098
+2014-11-11 08:23:27,995 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@617] - Established session 0x1499ba67d30000e with negotiated timeout 20000 for client /127.0.0.1:52098
+2014-11-11 08:24:44,870 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1463ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 08:25:22,550 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1122ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 10:11:32,495 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 5376ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 10:11:39,333 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1315ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:17:06,867 [myid:] - INFO  [SessionTracker:ZooKeeperServer@347] - Expiring session 0x1499ba67d30000d, timeout of 20000ms exceeded
+2014-11-11 13:17:06,867 [myid:] - INFO  [SessionTracker:ZooKeeperServer@347] - Expiring session 0x1499ba67d30000e, timeout of 20000ms exceeded
+2014-11-11 13:17:06,867 [myid:] - INFO  [SessionTracker:ZooKeeperServer@347] - Expiring session 0x1499ba67d30000c, timeout of 20000ms exceeded
+2014-11-11 13:17:06,870 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed session termination for sessionid: 0x1499ba67d30000d
+2014-11-11 13:17:06,870 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed session termination for sessionid: 0x1499ba67d30000e
+2014-11-11 13:17:06,870 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed session termination for sessionid: 0x1499ba67d30000c
+2014-11-11 13:17:06,873 [myid:] - INFO  [SyncThread:0:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52097 which had sessionid 0x1499ba67d30000d
+2014-11-11 13:17:06,874 [myid:] - INFO  [SyncThread:0:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52098 which had sessionid 0x1499ba67d30000e
+2014-11-11 13:17:06,874 [myid:] - INFO  [SyncThread:0:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52095 which had sessionid 0x1499ba67d30000c
+2014-11-11 13:17:08,186 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52099
+2014-11-11 13:17:08,187 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@861] - Client attempting to renew session 0x1499ba67d30000c at /127.0.0.1:52099
+2014-11-11 13:17:08,187 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@610] - Invalid session 0x1499ba67d30000c for client /127.0.0.1:52099, probably expired
+2014-11-11 13:17:08,187 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52099 which had sessionid 0x1499ba67d30000c
+2014-11-11 13:17:08,191 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52100
+2014-11-11 13:17:08,192 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@868] - Client attempting to establish new session at /127.0.0.1:52100
+2014-11-11 13:17:08,198 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@617] - Established session 0x1499ba67d30000f with negotiated timeout 20000 for client /127.0.0.1:52100
+2014-11-11 13:17:08,927 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52101
+2014-11-11 13:17:08,928 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@861] - Client attempting to renew session 0x1499ba67d30000e at /127.0.0.1:52101
+2014-11-11 13:17:08,928 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@610] - Invalid session 0x1499ba67d30000e for client /127.0.0.1:52101, probably expired
+2014-11-11 13:17:08,928 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52101 which had sessionid 0x1499ba67d30000e
+2014-11-11 13:17:08,933 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52102
+2014-11-11 13:17:08,934 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@868] - Client attempting to establish new session at /127.0.0.1:52102
+2014-11-11 13:17:08,939 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@617] - Established session 0x1499ba67d300010 with negotiated timeout 20000 for client /127.0.0.1:52102
+2014-11-11 13:17:25,648 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52104
+2014-11-11 13:17:25,652 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@868] - Client attempting to establish new session at /127.0.0.1:52104
+2014-11-11 13:17:25,654 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@617] - Established session 0x1499ba67d300011 with negotiated timeout 20000 for client /127.0.0.1:52104
+2014-11-11 13:17:26,725 [myid:] - INFO  [ProcessThread(sid:0 cport:-1)::PrepRequestProcessor@494] - Processed session termination for sessionid: 0x1499ba67d300011
+2014-11-11 13:17:26,726 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxn@1007] - Closed socket connection for client /127.0.0.1:52104 which had sessionid 0x1499ba67d300011
+2014-11-11 13:17:26,741 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52105
+2014-11-11 13:17:26,742 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@868] - Client attempting to establish new session at /127.0.0.1:52105
+2014-11-11 13:17:26,744 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@617] - Established session 0x1499ba67d300012 with negotiated timeout 20000 for client /127.0.0.1:52105
+2014-11-11 13:51:58,803 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 3666ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:01,068 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2259ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:03,907 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2097ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:08,531 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1618ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:13,458 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2016ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:17,817 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 4357ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:20,742 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2260ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:22,830 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2008ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:27,868 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2009ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:30,097 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2223ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:35,067 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2194ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:37,220 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2147ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:44,592 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 3830ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:47,256 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1491ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:49,231 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1629ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:53,755 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1513ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:52:55,655 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1896ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:00,422 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 3661ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:02,567 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1906ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:05,408 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1981ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:10,040 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2469ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:11,816 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1770ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:16,268 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1444ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:24,834 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 5556ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:27,342 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2502ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:29,806 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1961ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:34,176 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1823ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:36,710 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2529ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:41,555 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2137ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:46,203 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 4637ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:48,161 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1593ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:51,398 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2185ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:55,128 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1963ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:53:57,382 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2248ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:02,079 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1947ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:03,625 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1540ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:10,258 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 3624ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:12,429 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2164ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:15,107 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1839ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:19,096 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1661ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:20,432 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1327ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:24,467 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1025ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:27,628 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 3156ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:28,908 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1264ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:33,869 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1949ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:35,969 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2093ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:38,421 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1537ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:42,262 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1283ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:44,713 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2443ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:49,757 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2432ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:52,053 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2287ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:56,100 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1334ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:54:57,512 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1399ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:55:02,405 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1882ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:55:05,179 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2768ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:55:10,665 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 5249ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:55:13,451 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2763ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:55:16,409 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2735ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:55:21,367 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2909ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:55:24,915 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 3532ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:55:28,130 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1755ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:55:33,388 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 5250ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 13:55:35,003 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1606ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:03:52,237 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:NIOServerCnxnFactory@197] - Accepted socket connection from /127.0.0.1:52107
+2014-11-11 14:03:52,257 [myid:] - INFO  [NIOServerCxn.Factory:0.0.0.0/0.0.0.0:2181:ZooKeeperServer@868] - Client attempting to establish new session at /127.0.0.1:52107
+2014-11-11 14:03:52,267 [myid:] - INFO  [SyncThread:0:ZooKeeperServer@617] - Established session 0x1499ba67d300013 with negotiated timeout 30000 for client /127.0.0.1:52107
+2014-11-11 14:05:29,654 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2191ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:09:01,178 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1360ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:10:45,495 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1819ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:13:19,239 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1047ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:13:24,950 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1047ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:13:47,209 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 3787ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:13:52,656 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1867ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:21:48,012 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 4073ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:24:38,357 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2134ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:25:20,938 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 2694ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:40:17,043 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1044ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:45:50,801 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1067ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:45:58,534 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1893ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide
+2014-11-11 14:46:02,721 [myid:] - WARN  [SyncThread:0:FileTxnLog@334] - fsync-ing the write ahead log in SyncThread:0 took 1085ms which will adversely effect operation latency. See the ZooKeeper troubleshooting guide

@@ -34,3 +34,38 @@ source /etc/environment
 echo $JAVA_HOME
 java -version
 
+/**************************************************************************************/
+in order to use IntelliJ IDEA, openjdk-6-jdk is not support... has to download oracle jdk
+/**************************************************************************************/
+	$ sudo add-apt-repository ppa:webupd8team/java
+	$ sudo apt-get update
+	$ sudo apt-get install oracle-java6-installer // change to java7 or java8 accordingly
+	
+//now re-config java
+	$ sudo update-alternatives --config java
+	/*--------------------------------------------------------------------------------*/
+	There are 2 choices for the alternative java (providing /usr/bin/java).
+
+	  Selection    Path                                           Priority   Status
+	------------------------------------------------------------
+	* 0            /usr/lib/jvm/java-6-oracle/jre/bin/java         1062      auto mode
+	  1            /usr/lib/jvm/java-6-openjdk-i386/jre/bin/java   1061      manual mode
+	  2            /usr/lib/jvm/java-6-oracle/jre/bin/java         1062      manual mode
+
+	Press enter to keep the current choice[*], or type selection number: 
+	/*--------------------------------------------------------------------------------*/
+	
+/*** as we can see above, java-6-oracle has been set as the default ***/
+
+//reconfig the JAVA_HOME & JRE_HOME
+	$ sudo nano /etc/profile
+//Add the JAVA_HOME into this file
+JRE_HOME=/usr/lib/jvm/java-6-oracle/jre/bin/java
+JAVA_HOME=/usr/lib/jvm/java-6-oracle
+//That should be enough to set the environment variable. Now reload this file:
+	$ source /etc/profile
+
+
+
+
+
