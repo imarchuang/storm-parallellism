@@ -1,0 +1,87 @@
+/**
+this is the instruction notes for running storm nimbus, supervisor and ui as daemon processes
+**/
+
+//download supervisor
+	$ sudo apt-get install supervisor
+
+//Once this has completed, the supervisor daemon should already be started, as the prebuilt packages 
+//come with an init script that will also ensure the Supervisor is restarted after a system reboot. 
+//You can ensure this is the case by running:
+	$ sudo service supervisor restart
+	
+//for the sake of completion, make the following 2 directories
+	$ sudo mkdir -p /var/log/storm
+	$ sudo chown -R storm:storm /var/log/storm
+	
+//unlike in CentOS or RedHat linux (where the conf file is /etc/supervisord.conf), the conf file is /etc/supervisord/supervisord.conf
+//add in the storm nimbus, supervisor and ui processes
+	[program:storm-nimbus]
+	command=/home/marc/Downloads/apache-storm/bin/storm nimbus
+	user=storm
+	autostart=true
+	autorestart=true
+	startsecs=10
+	startretries=999
+	log_stdout=true
+	log_stderr=true
+	logfile=/var/log/storm/nimbus.out
+	logfile_maxbytes=20MB
+	logfile_backups=10
+	
+	[program:storm-supervisor]
+	command=/home/marc/Downloads/apache-storm/bin/storm supervisor
+	user=storm
+	autostart=true
+	autorestart=true
+	startsecs=10
+	startretries=999
+	log_stdout=true
+	log_stderr=true
+	logfile=/var/log/storm/supervisor.out
+	logfile_maxbytes=20MB
+	logfile_backups=10
+
+	[program:storm-ui]
+	command=/home/marc/Downloads/apache-storm/bin/storm ui
+	user=storm
+	autostart=true
+	autorestart=true
+	startsecs=10
+	startretries=999
+	log_stdout=true
+	log_stderr=true
+	logfile=/var/log/storm/ui.out
+	logfile_maxbytes=20MB
+	logfile_backups=10
+
+//pick up the changes by one of the following 2 ways
+(1)	$ sudo service supervisor restart
+(2) $ supervisorctl reread
+	$ supervisorctl update
+	
+//manage the programs
+	$ sudo supervisorctl status
+	/*---------------------------------------------------------------------*/
+	storm-nimbus                     RUNNING    pid 12018, uptime 0:17:59
+	storm-supervisor                 RUNNING    pid 12136, uptime 0:17:15
+	storm-ui                         RUNNING    pid 12017, uptime 0:17:59
+	/*---------------------------------------------------------------------*/
+	
+	$ supervisorctl -c /etc/supervisord/supervisord.conf
+	/*---------------------------------------------------------------------*/
+	marc@ubuntu:/etc$ sudo supervisorctl -c /etc/supervisor/supervisord.conf
+	storm-nimbus                     RUNNING    pid 12018, uptime 0:09:57
+	storm-supervisor                 RUNNING    pid 12136, uptime 0:09:13
+	storm-ui                         RUNNING    pid 12017, uptime 0:09:57
+	supervisor> help
+
+	default commands (type help <topic>):
+	=====================================
+	add    clear  fg        open  quit    remove  restart   start   stop  update 
+	avail  exit   maintail  pid   reload  reread  shutdown  status  tail  version
+
+	supervisor> stop storm-nimbus
+	/*---------------------------------------------------------------------*/
+	
+	
