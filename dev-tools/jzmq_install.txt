@@ -40,3 +40,12 @@ make[1]: *** No rule to make target `classdist_noinst.stamp', needed by `org/zer
 	./configure
 	make
 	sudo make install
+
+/***************this needs to be done to run the jzmq examples **********************/
+4. Where did it install?
+	# JAR is located here: /usr/local/share/java/zmq.jar 
+	# .so link files are located here: /usr/local/lib
+5. Important Step: Add /usr/local/lib to a line in /etc/ld.so.conf (here is my copy after editing)
+	include ld.so.conf.d/*.conf /usr/local/lib
+6. Reload “ldconfig“. //This clears the cache.
+
