@@ -1,8 +1,0 @@
-//compile the code
-	$ cd ~/Documents/storm-parallellism/src	
-	$ javac -cp ./../lib/log4j-1.2.17.jar ./logging/trial/*.java -d ./../bin/
-
-//run the code (with specifying the config file location)
-
-	$ java -Dlog4j.configuration=file:////home/marc/Documents/storm-parallellism/config/log4j.xml -cp ./../lib/log4j-1.2.17.jar:. logging.trial.HelloLog4j
-
