@@ -1,0 +1,48 @@
+//compile the code
+	$ cd ~/Documents/storm-parallellism/src
+	$ javac -classpath  /usr/local/share/java/zmq.jar ./messaging/zmq/hwserver.java -d ./../bin/
+	$ javac -classpath  /usr/local/share/java/zmq.jar ./messaging/zmq/hwclient.java -d ./../bin/
+
+//run the test
+	$ cd ~/Documents/storm-parallellism/bin
+	$ java -classpath .:/usr/local/share/java/zmq.jar -Djava.library.path=/usr/local/lib messaging.zmq.hwserver
+
+//open another window to run the hwclient
+	$ java -classpath .:/usr/local/share/java/zmq.jar -Djava.library.path=/usr/local/lib messaging.zmq.hwclient
+
+/---------------------------Server Side output---------------------------------/
+Received Hello
+Received Hello
+Received Hello
+Received Hello
+Received Hello
+Received Hello
+Received Hello
+Received Hello
+Received Hello
+Received Hello
+/---------------------------------------------------------------/
+
+/---------------------------Client Side output---------------------------------/
+Connecting to hello world server
+Sending Hello 0
+Received World 0
+Sending Hello 1
+Received World 1
+Sending Hello 2
+Received World 2
+Sending Hello 3
+Received World 3
+Sending Hello 4
+Received World 4
+Sending Hello 5
+Received World 5
+Sending Hello 6
+Received World 6
+Sending Hello 7
+Received World 7
+Sending Hello 8
+Received World 8
+Sending Hello 9
+Received World 9
+/---------------------------------------------------------------/
