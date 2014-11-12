@@ -47,5 +47,49 @@ make[1]: *** No rule to make target `classdist_noinst.stamp', needed by `org/zer
 	# .so link files are located here: /usr/local/lib
 5. Important Step: Add /usr/local/lib to a line in /etc/ld.so.conf (here is my copy after editing)
 	include ld.so.conf.d/*.conf /usr/local/lib
+
 6. Reload “ldconfig“. //This clears the cache.
+
+/***********if the code still not working********************************/
+	Error msg: 
+	2014-11-12 13:16:42 worker [ERROR] Error on initialization of server 
+	mk-worker 
+	java.lang.UnsatisfiedLinkError: no jzmq in java.library.path
+/***********try the following 4 ways********************************/
+(1)     echo CLASSPATH=/usr/local/share/java/zmq.jar:. > /etc/environment
+	$ source /etc/environment
+//Incredibly limiting as you will still need to override to include any other directory or JAR file.
+
+(2)     $ echo export LD_LIBRARY_PATH=/usr/local/lib > /etc/profile.d/ldlibrarypath.sh
+//This is pretty much a workaround to a JRE defect:
+http://lists.fedoraproject.org/pipermail/java-devel/2011-March/004153.html
+
+(2i)//if you are not the root user, change the /etc/profile file
+//add the following to the /etc/profile file:
+	export LD_LIBRARY_PATH=/usr/local/lib
+	export CLASSPATH=/usr/local/share/java/zmq.jar:.
+//source it out
+	$ source /etc/profile
+(3)//explicitly add the JVM option in the call:
+	$ java -Djava.library.path=/usr/local/lib -cp /usr/local/share/java/zmq.jar:. mainClass arg1 arg2 ...
+
+/***********verify the setup********************************/
+	$ echo $CLASSPATH
+	/usr/local/share/java/zmq.jar:.
+	$ echo $LD_LIBRARY_PATH
+	/usr/local/lib
+
+/***********verify the script********************************/
+// got to the folder where jzmq is installed:
+	$ cd ~/Downloads/jzmq
+	$ cd ./perf/
+	$ ./local_lat.sh tcp://127.0.0.1:5000 1 100000 &
+	[1] 32342
+	$ ./remote_lat.sh tcp://127.0.0.1:5000 1 100000
+	message size: 1 [B]
+	roundtrip count: 100000
+	mean latency: 64.345 [us]
+
+
+	
 
