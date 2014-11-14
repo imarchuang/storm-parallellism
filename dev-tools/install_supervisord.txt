@@ -16,6 +16,20 @@ this is the instruction notes for running storm nimbus, supervisor and ui as dae
 	
 //unlike in CentOS or RedHat linux (where the conf file is /etc/supervisord.conf), the conf file is /etc/supervisord/supervisord.conf
 //add in the storm nimbus, supervisor and ui processes
+	[program:zookeeper]
+	command=/usr/lib/jvm/java-6-oracle/bin/java -Dzookeeper.log.dir="." -Dzookeeper.root.logger="INFO,CONSOLE" -cp "/usr/local/zookeeper/bin/../build/classes:/usr/local/zookeeper/bin/../build/lib/*.jar:/usr/local/zookeeper/bin/../lib/slf4j-log4j12-1.6.1.jar:/usr/local/zookeeper/bin/../lib/slf4j-api-1.6.1.jar:/usr/local/zookeeper/bin/../lib/netty-3.7.0.Final.jar:/usr/local/zookeeper/bin/../lib/log4j-1.2.16.jar:/usr/local/zookeeper/bin/../lib/jline-0.9.94.jar:/usr/local/zookeeper/bin/../zookeeper-3.4.6.jar:/usr/local/zookeeper/bin/../src/java/lib/*.jar:/usr/local/zookeeper/bin/../conf:"  -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.local.only=false org.apache.zookeeper.server.quorum.QuorumPeerMain "/usr/local/zookeeper/bin/../conf/zoo.cfg"
+	startsecs=10
+	autostart=true
+	autorestart=true
+	log_stdout=true
+	log_stderr=true
+	stdout_logfile = /var/log/storm/zookeeper.out
+	stderr_logfile = /var/log/storm/zookeeper.err
+	logfile=/var/log/storm/zk.out
+	logfile_maxbytes=20MB
+	logfile_backups=10
+	stopsignal=KILL	
+
 	[program:storm-nimbus]
 	command=/home/marc/Downloads/apache-storm/bin/storm nimbus
 	user=storm
