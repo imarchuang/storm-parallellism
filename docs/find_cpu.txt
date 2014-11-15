@@ -1,0 +1,8 @@
+1. use top to find your target process, note down pid
+
+2. use "top -p pid", the press "shift+h" to open the thread open thread mode
+   note down threadid, tid which consumes the most cpu usage
+
+3. use jstack to view the real-time stack trace
+   jstack [pid] | grep -A 10 [tid(hex)]: 10 stands for the length of stack
+   e.g., jstack 21125 | grep -A 10 52f1 
