@@ -1,0 +1,7 @@
+//currently the crontab jobs are placed inside this file /etc/crontab
+
+//3 jobs placed
+
+*/57 * * * * marc find /home/marc/Downloads/apache-storm/logs -type f -mtime +0 -print0 > /home/marc/Downloads/apache-storm/logs/files.out
+*/59 * * * * marc find /home/marc/Downloads/apache-storm/logs -type f -name "worker-*.log.*" -mtime +1 > /home/marc/Downloads/apache-storm/logs/files2.out
+0 15 * * * marc find /home/marc/Downloads/apache-storm/logs -type f -name "worker-*.log.*" -mtime +2 -print0 | xargs -0 -I file rm -f file > /dev/null 2>&1  
