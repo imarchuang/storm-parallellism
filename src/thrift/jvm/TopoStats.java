@@ -15,21 +15,23 @@ import org.apache.thrift7.transport.TTransportException;
 import backtype.storm.generated.BoltStats;
 import backtype.storm.generated.ClusterSummary;
 import backtype.storm.generated.ErrorInfo;
+import backtype.storm.generated.ExecutorInfo;
 import backtype.storm.generated.ExecutorSpecificStats;
 import backtype.storm.generated.ExecutorStats;
 import backtype.storm.generated.ExecutorSummary;
 import backtype.storm.generated.GlobalStreamId;
+import backtype.storm.generated.Nimbus;
 import backtype.storm.generated.NotAliveException;
 import backtype.storm.generated.SpoutStats;
 import backtype.storm.generated.SupervisorSummary;
 import backtype.storm.generated.TopologyInfo;
 import backtype.storm.generated.TopologySummary;
-import backtype.storm.generated.Nimbus.*;
+import backtype.storm.generated.Nimbus.Client;
 
 
 public class TopoStats{
    public static void main(String[] args) {
-	TSocket tsocket = new TSocket("localhost", 8772);
+	TSocket tsocket = new TSocket("localhost", 6227);
 	TFramedTransport tTransport = new TFramedTransport(tsocket);
 	TBinaryProtocol tBinaryProtocol = new TBinaryProtocol(tTransport);
 	Nimbus.Client client = new Nimbus.Client(tBinaryProtocol);
