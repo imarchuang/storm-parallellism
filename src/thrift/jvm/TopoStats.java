@@ -23,6 +23,7 @@ import backtype.storm.generated.GlobalStreamId;
 import backtype.storm.generated.Nimbus;
 import backtype.storm.generated.NotAliveException;
 import backtype.storm.generated.SpoutStats;
+import backtype.storm.generated.StormTopology;
 import backtype.storm.generated.SupervisorSummary;
 import backtype.storm.generated.TopologyInfo;
 import backtype.storm.generated.TopologySummary;
