@@ -1,0 +1,36 @@
+//this doc illustrates the logging level in logback or log4j
+
+1. level="ERROR"
+/-------------------------------------------------------------------------------/
+2014-11-20 19:24:54,759 [main] ERROR c.c.l.ClassSpecificLogback - Dummy error message.
+/-------------------------------------------------------------------------------/
+
+2. level="WARN"
+/-------------------------------------------------------------------------------/
+2014-11-20 19:24:06,096 [main] WARN  c.c.l.ClassSpecificLogback - Dummy warning message.
+2014-11-20 19:24:06,100 [main] ERROR c.c.l.ClassSpecificLogback - Dummy error message.
+/-------------------------------------------------------------------------------/
+
+3. level="INFO"
+/-------------------------------------------------------------------------------/
+2014-11-20 19:23:32,811 [main] INFO  c.c.l.ClassSpecificLogback - Welcome to the HelloWorld example of Logback.
+2014-11-20 19:23:32,812 [main] WARN  c.c.l.ClassSpecificLogback - Dummy warning message.
+2014-11-20 19:23:32,812 [main] ERROR c.c.l.ClassSpecificLogback - Dummy error message.
+/-------------------------------------------------------------------------------/
+
+4. level="DEBUG"
+/-------------------------------------------------------------------------------/
+2014-11-20 19:23:32,804 [main] DEBUG c.c.l.ClassSpecificLogback - Hi, Marc Huang
+2014-11-20 19:23:32,811 [main] INFO  c.c.l.ClassSpecificLogback - Welcome to the HelloWorld example of Logback.
+2014-11-20 19:23:32,812 [main] WARN  c.c.l.ClassSpecificLogback - Dummy warning message.
+2014-11-20 19:23:32,812 [main] ERROR c.c.l.ClassSpecificLogback - Dummy error message.
+/-------------------------------------------------------------------------------/
+
+5. level="TRACE"
+/-------------------------------------------------------------------------------/
+2014-11-20 19:29:32,544 [main] TRACE c.c.l.ClassSpecificLogback - Hello World!
+2014-11-20 19:29:32,548 [main] DEBUG c.c.l.ClassSpecificLogback - Hi, Marc Huang
+2014-11-20 19:29:32,548 [main] INFO  c.c.l.ClassSpecificLogback - Welcome to the HelloWorld example of Logback.
+2014-11-20 19:29:32,549 [main] WARN  c.c.l.ClassSpecificLogback - Dummy warning message.
+2014-11-20 19:29:32,549 [main] ERROR c.c.l.ClassSpecificLogback - Dummy error message.
+/-------------------------------------------------------------------------------/
