@@ -1,0 +1,105 @@
+//All the following procedures can be completed within Eclipse IDE
+
+1. Create Maven Project
+Select from the menu File --> New --> Other --> Maven --> Maven Project ('logback').
+
+2. Select Archetype (Group Id: 'org.apache.mavens.archetypes' and Artifact Id : 'maven-archetype-quickstart')
+Catalog: Intenal					
+Filter: quick
+
+3. Specify Archetype Parameters as shown below:
+Group Id: com.csc2508.logback
+Artifact Id: logback
+Version: 0.0.1-SNAPSHOT
+Package: logback
+
+4. Add slf4j and Logback dependencies into pom.xml
+	important lines:
+	  <properties>
+	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+	    <slf4j.version>1.6.6</slf4j.version>
+	    <logback.version>1.0.7</logback.version>
+	  </properties>
+
+	  <dependency>
+	      <groupId>org.slf4j</groupId>
+	      <artifactId>slf4j-api</artifactId>
+	      <version>${slf4j.version}</version>
+	  </dependency>
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-core</artifactId>
+          <version>${logback.version}</version>
+      </dependency>
+
+
+5. Add logback.xml and configure as per the requirement. 
+	Put this configuration file into the resources folder
+	if the resources folder does not exist, create it! (project >> main >> resources)
+
+APPENDIX::
+(a)logback.xml:
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <appender name="fileAppender" class="ch.qos.logback.core.FileAppender">
+        <file>C:/workspace/logs/logback_test.log</file>
+        <append>true</append>
+        <encoder>
+            <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern>
+        </encoder>
+    </appender>
+     
+    <root level="TRACE">
+        <appender-ref ref="fileAppender" />
+    </root>
+</configuration>
+
+(b)pom.xml:
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.csc2508.logging</groupId>
+  <artifactId>logback</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>logback</name>
+  <url>http://maven.apache.org</url>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <slf4j.version>1.6.6</slf4j.version>
+    <logback.version>1.0.7</logback.version>
+  </properties>
+
+  <dependencies>
+	  <dependency>
+	      <groupId>org.slf4j</groupId>
+	      <artifactId>slf4j-api</artifactId>
+	      <version>${slf4j.version}</version>
+	  </dependency>
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+          <version>${logback.version}</version>
+      </dependency>
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-core</artifactId>
+          <version>${logback.version}</version>
+      </dependency>
+      
+      <dependency>
+	      <groupId>junit</groupId>
+	      <artifactId>junit</artifactId>
+	      <version>3.8.1</version>
+	      <scope>test</scope>
+      </dependency>
+  </dependencies>
+</project>
