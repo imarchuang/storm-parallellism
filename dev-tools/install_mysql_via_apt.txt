@@ -1,0 +1,23 @@
+//source:
+http://dev.mysql.com/doc/mysql-apt-repo-quick-guide/en/index.html#repo-qg-apt-select-series
+
+Title: A Quick Guide to Using the MySQL APT Repository
+
+OS: Ubuntu 14.04 LTS (“Trusty Tahr”)
+
+//Steps for a Fresh Installation of MySQL
+1. Adding the MySQL APT Repository
+	a. Go to the download page for the MySQL APT repository at http://dev.mysql.com/downloads/repo/apt/
+	b. Download mysql-apt-config_0.3.2-1ubuntu14.04_all.deb
+	c. Install the downloaded release package
+	   $ sudo dpkg -i PATH_TO/mysql-apt-config_0.3.2-1ubuntu14.04_all.deb 
+2. During the installation of the package, you will be asked to choose the versions of the MySQL server
+
+3. get the most up-to-date package information from the MySQL APT repository
+   $ sudo apt-get update
+4. Installing MySQL with APT
+   $ sudo apt-get install mysql-server
+5. Starting and Stopping the MySQL Server
+   $ sudo service mysql status
+   $ sudo service mysql stop
+   $ sudo service mysql start

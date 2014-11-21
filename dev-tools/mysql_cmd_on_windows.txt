@@ -1,0 +1,92 @@
+//Starting the Server as deamon
+%MYSQL_HOME%\bin\mysqld" --console
+
+/******************************************************************************************************/
+D:\installed_softwares\03_mysql-5.6.16-winx64\bin>mysqld --console
+2014-11-20 02:06:34 0 [Warning] TIMESTAMP with implicit DEFAULT value is deprecated. Please use --explicit_defaults_for_timestamp server option (see d
+ocumentation for more details).
+2014-11-20 02:06:34 11408 [Note] Plugin 'FEDERATED' is disabled.
+2014-11-20 02:06:34 11408 [Note] InnoDB: Using atomics to ref count buffer pool pages
+2014-11-20 02:06:34 11408 [Note] InnoDB: The InnoDB memory heap is disabled
+2014-11-20 02:06:34 11408 [Note] InnoDB: Mutexes and rw_locks use Windows interlocked functions
+2014-11-20 02:06:34 11408 [Note] InnoDB: Compressed tables use zlib 1.2.3
+2014-11-20 02:06:34 11408 [Note] InnoDB: Not using CPU crc32 instructions
+2014-11-20 02:06:34 11408 [Note] InnoDB: Initializing buffer pool, size = 128.0M
+2014-11-20 02:06:34 11408 [Note] InnoDB: Completed initialization of buffer pool
+2014-11-20 02:06:34 11408 [Note] InnoDB: Highest supported file format is Barracuda.
+2014-11-20 02:06:34 11408 [Note] InnoDB: The log sequence numbers 1625997 and 1625997 in ibdata files do not match the log sequence number 1943814 in
+the ib_logfiles!
+2014-11-20 02:06:34 11408 [Note] InnoDB: Database was not shutdown normally!
+2014-11-20 02:06:34 11408 [Note] InnoDB: Starting crash recovery.
+2014-11-20 02:06:34 11408 [Note] InnoDB: Reading tablespace information from the .ibd files...
+2014-11-20 02:06:35 11408 [Note] InnoDB: Restoring possible half-written data pages
+2014-11-20 02:06:35 11408 [Note] InnoDB: from the doublewrite buffer...
+2014-11-20 02:06:35 11408 [Note] InnoDB: 128 rollback segment(s) are active.
+2014-11-20 02:06:35 11408 [Note] InnoDB: Waiting for purge to start
+2014-11-20 02:06:35 11408 [Note] InnoDB: 5.6.16 started; log sequence number 1943814
+2014-11-20 02:06:36 11408 [Note] Server hostname (bind-address): '*'; port: 3306
+2014-11-20 02:06:36 11408 [Note] IPv6 is available.
+2014-11-20 02:06:36 11408 [Note]   - '::' resolves to '::';
+2014-11-20 02:06:36 11408 [Note] Server socket created on IP: '::'.
+2014-11-20 02:06:36 11408 [Note] Event Scheduler: Loaded 0 events
+2014-11-20 02:06:36 11408 [Note] mysqld: ready for connections.
+Version: '5.6.16'  socket: ''  port: 3306  MySQL Community Server (GPL)
+/******************************************************************************************************/
+
+//show databases
+%MYSQL_HOME%\binmysqlshow
++--------------------+
+|     Databases      |
++--------------------+
+| information_schema |
+| test               |
++--------------------+
+
+%MYSQL_HOME%\binmysqlshow -u root -p
+Enter password: *****
++--------------------+
+|     Databases      |
++--------------------+
+| information_schema |
+| mysql              |
+| performance_schema |
+| publisher          |
+| test               |
++--------------------+
+
+//show tables on a specific database
+C:\Users\marc>mysqlshow -u root -p mysql
+Enter password: *****
+Database: mysql
++---------------------------+
+|          Tables           |
++---------------------------+
+| columns_priv              |
+| db                        |
+| event                     |
+| func                      |
+| general_log               |
+| help_category             |
+| help_keyword              |
+| help_relation             |
+| help_topic                |
+| innodb_index_stats        |
+| innodb_table_stats        |
+| ndb_binlog_index          |
+| plugin                    |
+| proc                      |
+| procs_priv                |
+| proxies_priv              |
+| servers                   |
+| slave_master_info         |
+| slave_relay_log_info      |
+| slave_worker_info         |
+| slow_log                  |
+| tables_priv               |
+| time_zone                 |
+| time_zone_leap_second     |
+| time_zone_name            |
+| time_zone_transition      |
+| time_zone_transition_type |
+| user                      |
++---------------------------+
