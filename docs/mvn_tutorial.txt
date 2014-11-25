@@ -1,0 +1,85 @@
+/**maven is not the best built automation tool
+ * there are better tools out there, e.g. a great ruby-based tool for Java 
+ * development automation called Apache Buildr that's much simpler and easier to use. 
+ * Apache ant is another simpler and easier one
+ **/
+
+ 1. Create a fresh folder that'll end up being the parent folder of our project's root folder, say, "C:\workspace"
+
+ 2. cd to the root folder, type in "mvn archetype:generate"
+
+ /*upon this statement:*/
+ /*-----------------------------------------------------------------------------------------------*/
+ 	Choose a number or apply filter (format: [groupId:]artifactId, case sensitive contains): 499:
+ /*-----------------------------------------------------------------------------------------------*/
+ 3. To choose default archetype, "maven-archetype-quickstart", just hit enter or type 499, or type in
+ 	maven-archetype-quickstart and hit enter 
+
+ /*upon this statement:*/
+ /*-----------------------------------------------------------------------------------------------*/
+ 	Choose org.apache.maven.archetypes:maven-archetype-quickstart version:
+	1: 1.0-alpha-1
+	2: 1.0-alpha-2
+	3: 1.0-alpha-3
+	4: 1.0-alpha-4
+	5: 1.0
+	6: 1.1
+	Choose a number: 6:
+ /*-----------------------------------------------------------------------------------------------*/
+ 4. Hit Enter to select the default, latest stable version (currently option 6, v1.1).
+
+ /*upon this statement:*/
+ /*-----------------------------------------------------------------------------------------------*/
+ 	Define value for property 'groupId': :
+ /*-----------------------------------------------------------------------------------------------*/
+ 5. Now maven wants to know groupId. groupId is like a package directory. Like org.apache in org.apache.maven or com.your-company
+ 	But be prepared that your project's directory structure will be based on this input, 
+ 	e.g. if you type my.friend.is.a.seal you'll end up with a dir repos/project-name/src/main/java/my/friend/is/a/seal,
+ 	Here I'll use com.csc2508.storm
+
+ /*upon this statement:*/
+ /*-----------------------------------------------------------------------------------------------*/
+ 	Define value for property 'artifactId': :
+ /*-----------------------------------------------------------------------------------------------*/
+ 6. Next maven wants to know artifactId? That's the name of your project. 
+ 	In fact, artifact is like a maven general object (e.g. project, module, dependency, plugin). 
+ 	I'll use maven_trial.
+
+ /*upon this statement:*/
+ /*-----------------------------------------------------------------------------------------------*/
+ 	Define value for property 'version':  1.0-SNAPSHOT: :
+ /*-----------------------------------------------------------------------------------------------*/
+ 7. Next, maven wants to know your project's version. 
+ 	Just hit enter (although that would be a better guess than 1.0-SNAPSHOT). 
+ 	BTW, if a version contains keyword “-SNAPSHOT”, then maven replaces it with a UTF datetime value at the time of release. 
+ 	That's used to declare to the world that your project is currently under development.
+
+ /*upon this statement:*/
+ /*-----------------------------------------------------------------------------------------------*/
+ 	Define value for property 'package':  com.csc2508.storm: :
+ /*-----------------------------------------------------------------------------------------------*/
+ 8. Next, maven wants to know your project's package. 
+ 	Just hit enter to choose the default one same name with groupId "com.csc2508.storm"
+
+ /*upon this statement:*/
+ /*-----------------------------------------------------------------------------------------------*/
+ 	Confirm properties configuration:
+	groupId: com.csc2508.storm
+	artifactId: maven_trial
+	version: 1.0-SNAPSHOT
+	package: com.csc2508.storm
+	 Y: :
+ /*-----------------------------------------------------------------------------------------------*/
+ 9. Maven now presents you with the choices you made and asks your confirmation. 
+ 	Type Y and hit enter.
+
+ 10. To check if you can successfuly build your new, still rather empty project, cd to maven_trial directory and execute "mvn install"
+ 	You should see BUILD SUCCESSFUL somewhere in your terminal. If you now take a look at project's root, you'll see that this step created target folder. 
+ 	That's your project's output folder with compiled java files and some other irrelevant stuff.
+
+ 11. To rebuild the project after some configuration change (say, pom.xml is changed), use "mvn clean install"
+ 	"clean" means to delete the target dir so maven can do fresh install.
+
+ 12. To make it easily importable to Eclipse IDE, execute "mvn eclipse:eclipse" 
+ 	This will create eclipse related project files: .project, .classpath and .settings folder with some core preferences inside. 
+ 	After you open eclipse, if your .jar files are not listed under Referenced Libraries, refresh your workspace or restart eclipse.
