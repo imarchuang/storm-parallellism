@@ -1,0 +1,7 @@
+//storm logviewer
+
+1. start the daemon process logviewer 
+	$ storm logviewer
+
+2. view the respective logs files using browser\
+	http://nimbus:8000/log?file=worker-6704.log

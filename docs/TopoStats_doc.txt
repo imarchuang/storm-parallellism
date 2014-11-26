@@ -1,0 +1,33 @@
+//compile the code
+	$ cd ~/Documents/storm-parallellism/src	
+	$ javac -classpath $STORM_HOME/lib/storm-core-0.9.2-incubating.jar:$STORM_HOME/lib/slf4j-api-1.6.5.jar:$STORM_HOME/lib/log4j-over-slf4j-1.6.6.jar:$STORM_HOME/lib/commons-lang-2.5.jar ./thrift/jvm/TopoStats.java -d ./../bin/
+
+//run the code (with specifying the config file location)
+	$ cd ~/Documents/storm-parallellism/bin
+	$ java -cp .:$STORM_HOME/lib/storm-core-0.9.2-incubating.jar:$STORM_HOME/lib/slf4j-api-1.6.5.jar:$STORM_HOME/lib/log4j-over-slf4j-1.6.6.jar:$STORM_HOME/lib/commons-lang-2.5.jar thrift.jvm.TopoStats
+
+/*---------------------------return----------------------------------------*/
+SLF4J: Failed to load class "org.slf4j.impl.StaticLoggerBinder".
+SLF4J: Defaulting to no-operation (NOP) logger implementation
+SLF4J: See http://www.slf4j.org/codes.html#StaticLoggerBinder for further details.
+executorSummary :: __acker emit size :: 4
+executorSummary :: __acker emit size :: 4
+executorSummary :: __metricsbacktype.storm.metric.LoggingMetricsConsumer emit size :: 4
+executorSummary :: __metricsbacktype.storm.metric.LoggingMetricsConsumer emit size :: 4
+executorSummary :: exclaim1 emit size :: 4
+executorSummary :: exclaim1 emit size :: 4
+executorSummary :: exclaim1 emit size :: 4
+executorSummary :: exclaim2 emit size :: 4
+executorSummary :: exclaim2 emit size :: 4
+executorSummary :: word emit size :: 4
+executorSummary :: word emit size :: 4
+executorSummary :: word emit size :: 4
+executorSummary :: word emit size :: 4
+executorSummary :: word emit size :: 4
+executorSummary :: word emit size :: 4
+executorSummary :: word emit size :: 4
+executorSummary :: word emit size :: 4
+executorSummary :: word emit size :: 4
+executorSummary :: word emit size :: 4
+executorSummary :: __acker emit size :: 4
+/*---------------------------return----------------------------------------*/

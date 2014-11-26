@@ -1,0 +1,44 @@
+mysql> show databases;
+
+mysql> quit;
+
+//use \c to cancel a statement
+mysql> select *
+mysql> from \c
+
+mysql> use db_name;
+
+mysql> create database db_name;
+mysql> drop database db_name;
+
+mysql> desc tbl_name;
+
+mysql> create table tbl_name(col_definition1, col_definition2, ...);
+mysql> drop table tbl_name;
+
+mysql> insert into tbl_name values(col_value1, col_ value2, ...);
+
+//example demo:
+
+mysql> create table book (id integer, title varchar(40), price double);
+
+mysql> insert into book values (1, 'XML Programming', 34.0);
+mysql> insert into book values (2, 'Algorithms', 42.0);
+
+mysql> select * from book;
++------+-----------------+-------+
+| id   | title           | price |
++------+-----------------+-------+
+|    1 | XML Programming |    34 |
+|    2 | Algorithms      |    42 |
++------+-----------------+-------+
+2 rows in set (0.03 sec)
+
+mysql> drop table book;
+
+mysql> drop database bookstore;
+
+
+//grant privileges
+mysql> create database publisher;
+mysql> grant all privileges on publisher.* to publisher@localhost identified by 'publisher';

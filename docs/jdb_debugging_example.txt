@@ -1,0 +1,105 @@
+//jdb debugger example:
+
+1. In order to view locals during the debugging process, remember to compile the java code with -g option
+	$ javac -g dict/*.java
+	$ javac -g Homework6Test.java
+
+2. Start the debugger: 
+	$ jdb Homework6Test
+/*************************************************************************/
+Initializing jdb ...
+>
+/*************************************************************************/
+
+3. Set the first breakpoint: 
+	> stop in Homework6Test.main
+/*************************************************************************/
+Deferring breakpoint Homework6Test.main.
+It will be set after the class is loaded.
+>
+/*************************************************************************/
+
+4. Start debugging the program:
+	> run
+/*************************************************************************/
+run Homework6Test
+Set uncaught java.lang.Throwable
+Set deferred uncaught java.lang.Throwable
+>
+VM Started: Set deferred breakpoint Homework6Test.main
+
+Breakpoint hit: "thread=main", Homework6Test.main(), line=51 bci=0
+51        if (args.length == 0) {
+
+main[1]
+/*************************************************************************/
+
+6. List the source code:
+	main[1] list
+/*************************************************************************/
+47
+48      public static void main(String[] args) {
+49        int numBoards;
+50
+51 =>     if (args.length == 0) {
+52          numBoards = 100;
+53        } else {
+54          numBoards = Integer.parseInt(args[0]);
+55        }
+56        HashTableChained table = new HashTableChained(numBoards);
+main[1]
+/*************************************************************************/
+
+7. Step one line (step OVER calls)
+	main[1] next
+/*************************************************************************/
+>
+Step completed: "thread=main", Homework6Test.main(), line=52 bci=5
+52          numBoards = 100;
+
+main[1]
+/*************************************************************************/
+
+8. Use 'locals' cmd to view the local variables value
+	main[1] locals
+/*************************************************************************/
+Method arguments:
+args = instance of java.lang.String[0] (id=396)
+Local variables:
+numBoards = 100
+table = instance of dict.HashTableChained(id=401)
+main[1]
+/*************************************************************************/
+
+9. Upon running to the line 58, use 'step' cmd to step into the function
+	main[1] step
+/*************************************************************************/
+>
+Step completed: "thread=main", dict.HashTableChained.numCollisions(), line=238 bci=0
+238          int num = 0;
+
+main[1]
+/*************************************************************************/
+
+10. use 'step up' command to return to the caller
+main[1] step up
+/*************************************************************************/
+>
+0
+0
+.
+.
+.
+2
+4
+1
+.
+.
+.
+
+Step completed: "thread=main", Homework6Test.main(), line=58 bci=39
+58      System.out.println(table.numCollisions());
+
+main[1]
+/*************************************************************************/
+

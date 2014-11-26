@@ -36,7 +36,7 @@ public class TopoStats{
 	TFramedTransport tTransport = new TFramedTransport(tsocket);
 	TBinaryProtocol tBinaryProtocol = new TBinaryProtocol(tTransport);
 	Nimbus.Client client = new Nimbus.Client(tBinaryProtocol);
-	String topologyId = "exclam_wMetrics-10-1415929187";
+	String topologyId = "exclam_wMetrics-2-1416361768";
 
 
 	try {

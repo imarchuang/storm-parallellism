@@ -1,0 +1,21 @@
+//To display which accounts exist in the mysql.user table
+mysql> SELECT User, Host, Password FROM mysql.user;
+
+//Assigning root Account Passwords
+(1) Use the SET PASSWORD statement
+shell> mysql -u root
+mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('newpwd');
+mysql> SET PASSWORD FOR 'root'@'127.0.0.1' = PASSWORD('newpwd');
+mysql> SET PASSWORD FOR 'root'@'::1' = PASSWORD('newpwd');
+mysql> SET PASSWORD FOR 'root'@'%' = PASSWORD('newpwd');
+
+(2) Use the UPDATE statement
+shell> mysql -u root
+mysql> UPDATE mysql.user SET Password = PASSWORD('newpwd')
+    ->     WHERE User = 'root';
+mysql> FLUSH PRIVILEGES;
+//The FLUSH statement causes the server to reread the grant tables. Without it, the password change remains unnoticed by the server until you restart it.
+
+(3) Use the mysqladmin command-line client program
+shell> mysqladmin -u root password "newpwd"
+shell> mysqladmin -u root -h host_name password "newpwd"

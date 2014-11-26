@@ -69,6 +69,19 @@ this is the instruction notes for running storm nimbus, supervisor and ui as dae
 	logfile_maxbytes=20MB
 	logfile_backups=10
 
+	[program:storm-logviewer]
+	command=/home/marc/Downloads/apache-storm/bin/storm logviewer
+	user=storm
+	autostart=true
+	autorestart=true
+	startsecs=10
+	startretries=999
+	log_stdout=true
+	log_stderr=true
+	logfile=/var/log/storm/logviewer.out
+	logfile_maxbytes=20MB
+	logfile_backups=10
+
 //pick up the changes by one of the following 2 ways
 (1)	$ sudo service supervisor restart
 (2) $ supervisorctl reread
