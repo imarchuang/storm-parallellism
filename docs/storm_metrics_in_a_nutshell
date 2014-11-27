@@ -1,0 +1,117 @@
+This doc is to demostrate how the storm built-in metrics module can be used
+
+Concepts
+Storm’s metrics framework mainly consists of two API additions: 1) Metrics, 2) Metrics Consumers.
+
+Metric
+An object initialized in a Storm bolt or spout (or Trident Function) that is used for instrumenting the respective bolt/spout for metric collection. 
+This object must also be registered with Storm using the TopologyContext.registerMetric(…) function. 
+Metrics must implement backtype.storm.metric.api.IMetric. Several useful Metric implementations exist. 
+For more details, go to this page: http://storm.apache.org/documentation/Metrics.html
+
+Metrics Consumer
+An object meant to process/report/log/etc output from Metric objects (represented as DataPoint objects) 
+for all the various places these Metric objects were registered, 
+also providing useful metadata about where the metric was collected such as worker host, worker port, componentID (bolt/spout name), taskID, timestamp, 
+and updateInterval (all represented as TaskInfo objects). MetricConsumers are registered in the storm topology configuration 
+(usingbacktype.storm.Config.registerMetricsConsumer(…)) or in Storm’s system config (Under the config name topology.metrics.consumer.register). 
+Metrics Consumers must implement backtype.storm.metric.api.IMetricsConsumer.
+
+Example Usage
+Using storm metrics module in ExclamationTopology will allow us to collect some metrics including:
+
+1. A simple count of how many times the execute() method was called per time period (5 sec in this example).
+2. A count of how many times an individual word was encountered per time period (1 minute in this example).
+3. The mean length of all words encountered per time period (1 minute in this example).
+
+Below are the source code illustration:
+1. Adding Metrics to the ExclamationBolt
+	(1) Add three new member variables to ExclamationBolt. Notice there are all declared as transient. 
+		This is needed because none of these Metrics are Serializable and all non-transient variables 
+		in Storm bolts and spouts must be Serializable.
+
+		/*********************************************************************************************/
+		transient CountMetric _countMetric;
+		transient MultiCountMetric _wordCountMetric;
+		transient ReducedMetric _wordLengthMeanMetric;
+		/*********************************************************************************************/
+
+	(2) Initialize and register these Metrics in the Bolt’s prepare method. 
+		Metrics can only be registered in the prepare method of bolts or the open method of spouts. Otherwise an exception is thrown. 
+		The registerMetric takes three arguments: 1) metric name, 2) metric object, and 3) time bucket size in seconds. 
+		The “time bucket size in seconds” controls how often the metrics are sent to the Metrics Consumer. 
+
+		/*********************************************************************************************/
+		@Override
+		public void prepare(Map conf, TopologyContext context, OutputCollector collector) {
+		  _collector = collector;
+		  initMetrics(context);
+		}
+		 
+		void initMetrics(TopologyContext context)
+		{
+		    _countMetric = new CountMetric();
+		    _wordCountMetric = new MultiCountMetric();
+		    _wordLengthMeanMetric = new ReducedMetric(new MeanReducer());
+		    
+		    context.registerMetric("execute_count", _countMetric, 5);
+		    context.registerMetric("word_count", _wordCountMetric, 60);
+		    context.registerMetric("word_length", _wordLengthMeanMetric, 60);
+		}
+		/*********************************************************************************************/
+
+	(3) Actually increment/update the metrics in the bolt’s execute method.
+
+		/*********************************************************************************************/
+		@Override
+		public void execute(Tuple tuple) {
+		  _collector.emit(tuple, new Values(tuple.getString(0) + "!!!"));
+		  _collector.ack(tuple);
+		  updateMetrics(tuple.getString(0));
+		}
+
+		void updateMetrics(String word)
+		{
+		  _countMetric.incr();
+		  _wordCountMetric.scope(word).incr();
+		  _wordLengthMeanMetric.update(word.length());
+		}
+		/*********************************************************************************************/
+
+2. Collecting/Reporting Metrics
+	Lastly, we need to enable a Metric Consumer in order to collect and process these metrics. 
+	The Metric Consumer is meant to be the interface between the Storm metrics framework and some external system (such as Statsd, Riemann, etc). 
+	In this example, we are just going to log the metrics using Storm’s built-in LoggingMetricsConsumer. 
+	This is accomplished by registering the Metrics Consumer when defining the Storm topology. 
+	In this example, we are registering the metrics consumer with a parallelism hint of 2. 
+
+	Here is the line we need to add when defining the topology.
+	/*********************************************************************************************/
+	conf.registerMetricsConsumer(LoggingMetricsConsumer.class, 2);
+	/*********************************************************************************************/
+
+	Here is the full code for defining the toplogy:
+	/*********************************************************************************************/
+	TopologyBuilder builder = new TopologyBuilder();
+	builder.setSpout("word", new TestWordSpout(), 10);
+	builder.setBolt("exclaim1", new ExclamationBolt(), 3)
+	  .shuffleGrouping("word");
+	builder.setBolt("exclaim2", new ExclamationBolt(), 2)
+	  .shuffleGrouping("exclaim1");
+	 
+	Config conf = new Config();
+	conf.setDebug(true);
+	conf.registerMetricsConsumer(LoggingMetricsConsumer.class, 2);
+	 
+	if (args != null && args.length > 0) {
+	  conf.setNumWorkers(3);
+	  StormSubmitter.submitTopology(args[0], conf, builder.createTopology());
+	}
+	else {
+	  LocalCluster cluster = new LocalCluster();
+	  cluster.submitTopology("test", conf, builder.createTopology());
+	  Utils.sleep(5*60*1000L);
+	  cluster.killTopology("test");
+	  cluster.shutdown();
+	}
+	/*********************************************************************************************/
