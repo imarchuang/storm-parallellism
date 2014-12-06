@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+	<!-- Properties -->
+    <property name="log.pattern" value="%d [%thread] %-5level %logger{5} - %msg%n"/>
+    <property name="log.history" value="7"/>
+    <property name="log.folder" value="C:/workspace/logs"/>
+    <property name="log.level" value="INFO"/>
+    
+    <appender name="fileAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.folder}/logback_test.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.folder}/logback_test.%d{yyyy-MM-dd}.log</fileNamePattern>
+            <maxHistory>${log.history}</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <!-- <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern> -->
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="ClassSpecificLogbackAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.folder}/ClusterInformationExtractor.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${log.folder}/ClusterInformationExtractor.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <!-- <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern> -->
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+    
+    <appender name="ClusterInfoExtractorToDBAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.folder}/ClusterInfoExtractorToDB.log</file>
+        <append>true</append>
+        <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+            <fileNamePattern>${log.folder}/ClusterInfoExtractorToDB.%i.log</fileNamePattern>
+            <minIndex>1</minIndex>
+            <maxIndex>3</maxIndex>
+        </rollingPolicy>
+        <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <maxFileSize>1MB</maxFileSize>
+        </triggeringPolicy>
+        <encoder>
+            <!-- <pattern>%d [%thread] %-5level  %logger{35} - %msg%n</pattern> -->
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+     
+    <logger name="thrift.jvm.ClusterInformationExtractor" level="TRACE" additivity="false">
+		<appender-ref ref="ClassSpecificLogbackAppender" />
+    </logger>
+    
+    <logger name="thrift.jvm.ClusterInfoExtractorToDB" level="INFO" additivity="false">
+		<appender-ref ref="ClusterInfoExtractorToDBAppender" />
+    </logger>
+     
+    <root level="TRACE">
+        <appender-ref ref="fileAppender" />
+    </root>
+</configuration>
