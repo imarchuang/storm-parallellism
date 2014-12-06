@@ -1,0 +1,62 @@
+//1. install a jar to maven local repository
+	$ mvn install:install-file -Dfile=C:\workspace\StormMetrics\target\StormMetrics-0.10.0-SNAPSHOT.jar -DgroupId=thrift.jvm -Dart
+ifactId=StormMetrics -Dversion=0.10.0 -Dpackaging=jar
+[INFO] Scanning for projects...
+[INFO]
+[INFO] ------------------------------------------------------------------------
+[INFO] Building StormMetrics 0.10.0-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO]
+[INFO] --- maven-install-plugin:2.4:install-file (default-cli) @ StormMetrics ---
+[INFO] Installing C:\workspace\StormMetrics\target\StormMetrics-0.10.0-SNAPSHOT.jar to C:\Users\marc\.m2\repository\thrift\jvm\StormMetrics\0.10.0\Sto
+rmMetrics-0.10.0.jar
+[INFO] Installing C:\Users\marc\AppData\Local\Temp\mvninstall2650013944341833066.pom to C:\Users\marc\.m2\repository\thrift\jvm\StormMetrics\0.10.0\St
+ormMetrics-0.10.0.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 0.713 s
+[INFO] Finished at: 2014-12-05T21:50:51-08:00
+[INFO] Final Memory: 7M/246M
+[INFO] ------------------------------------------------------------------------
+
+//2. add the dependency library to your pom.xml
+		<dependency>
+		     <groupId>thrift.jvm</groupId>
+		     <artifactId>StormMetrics</artifactId>
+		     <version>0.10.0</version>
+		</dependency>
+
+//3. run the main class via maven
+	$ mvn exec:java -Dexec.mainClass="com.otv.JobScheduler"
+(with args: mvn exec:java -Dexec.mainClass="com.otv.JobScheduler" -Dexec.args="arg0 arg1 arg2")
+
+//3.1 Alternatively, run the main class via maven by configuring the pom.xml
+	$ mvn run
+
+	<build>  
+	 <plugins>  
+	  <plugin>  
+	   <groupId>org.codehaus.mojo</groupId>  
+	   <artifactId>exec-maven-plugin</artifactId>  
+	   <version>1.1.1</version>  
+	   <executions>  
+	    <execution>  
+	     <phase>run</phase>  
+	     <goals>  
+	      <goal>java</goal>  
+	     </goals>  
+	     <configuration>  
+	      <mainClass>com.otv.JobScheduler</mainClass>  
+	      <!-- 
+	      <arguments>  
+	       <argument>arg0</argument>  
+	       <argument>arg1</argument>  
+	      </arguments>  
+	      -->
+	     </configuration>  
+	    </execution>  
+	   </executions>  
+	  </plugin>  
+	 </plugins>  
+	</build>
