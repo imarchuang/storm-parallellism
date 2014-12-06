@@ -21,6 +21,8 @@ cd $topo_path
 	    storm jar $topo_path$topo_jar storm.starter.RollingTopWords topwords remote
 	    echo "submit the ExclamationTopology topo..."
 	    storm jar $topo_path$topo_jar storm.starter.ExclamationTopology_wMetrics exclam_wMetrics
+            echo "submit the WordCountTopology topo..."
+            storm jar $topo_path$topo_jar storm.starter.WordCountTopology wordCount
 	else
 	    echo "submit the $1 topo with args $2 $3"
 	    storm jar $topo_path$topo_jar $1 $2 $3  
