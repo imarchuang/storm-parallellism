@@ -14,7 +14,7 @@ my $dbh = DBI->connect($dsn, $userid, $password ) or die $DBI::errstr;
 my $sql = $dbh->prepare("SELECT runid, state, startdatetime 
 						FROM runstate 
 						WHERE runid < (SELECT max(runid) FROM runstate) - ?");
-my $range = 50;
+my $range = 100;
 $sql->execute($range) or die $DBI::errstr;
 
 my $rows = $sql->rows;
