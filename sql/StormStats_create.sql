@@ -71,5 +71,5 @@ ALTER TABLE stormstats MODIFY component_id VARCHAR(255);
 ALTER TABLE stormstats MODIFY process_latency DOUBLE(30,26);
 ALTER TABLE stormstats MODIFY execute_latency DOUBLE(30,26);
 ALTER TABLE stormstats MODIFY complete_latency DOUBLE(30,26);
-ALTER TABLE stormstats MODIFY capacity double DOUBLE(20,16);
+ALTER TABLE stormstats MODIFY capacity DOUBLE(20,16);
 
