@@ -118,3 +118,7 @@ mysql> ON SCHEDULE EVERY 1 DAY
 mysql> DO
 mysql> CALL `archiveProc`();
 mysql> $$
+
+#with root acc#, useful show queries:
+mysql > show processlist\G
+mysql > show events\G
