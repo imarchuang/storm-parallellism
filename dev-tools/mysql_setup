@@ -1,0 +1,120 @@
+#init server
+shell> bin\mysqld --initialize-insecure
+
+#start the db server
+shell> bin\mysqld --console
+
+#secure root login
+shell> mysql -u root #login to mysql
+mysql> SET PASSWORD FOR 'root'@'localhost' = PASSWORD('admin');
+
+#login to mysql with password
+shell> mysql -u root -p
+
+# create new schema and grant privileges to users
+mysql> create database koboid_sla;
+mysql> grant all privileges on koboid_sla.* to koboid@localhost identified by 'koboid';
+mysql> create database koboid_batch;
+mysql> grant all privileges on koboid_batch.* to koboid@localhost identified by 'koboid';
+
+#grant remote host users
+mysql> grant all privileges on koboid_sla.* to koboid@'LP-840.kobo.corp' identified by 'koboid';
+mysql> grant all privileges on koboid_batch.* to koboid@'LP-840.kobo.corp' identified by 'koboid';
+
+# create tables
+CREATE TABLE koboid_sla.SLA_MESSAGE_ACK  (
+	MESSAGE_SEND_ID VARCHAR(100) NOT NULL PRIMARY KEY ,
+	PRODUCT_OWNER VARCHAR(100) NOT NULL,
+  PRODUCT_ISBN VARCHAR(100) NOT NULL,
+	MESSAGE_SEND_TIME DATETIME NOT NULL ,
+  MESSAGE_SEND_REF_ID VARCHAR(100) NOT NULL,
+  MESSAGE_SEND_PRIORITY VARCHAR(10) NOT NULL,
+  MESSAGE_SEND_REF_EVENT VARCHAR(100) DEFAULT NULL,
+   MESSAGE_SEND_REF_EVENT_ROLE VARCHAR(50) DEFAULT NULL,
+   MESSAGE_SEND_REF_EVENT_USER VARCHAR(50) DEFAULT NULL,
+   MESSAGE_SEND_REF_EVENT_SOURCE VARCHAR(2500) DEFAULT NULL,
+   MESSAGE_SEND_REF_EVENT_TIME DATETIME DEFAULT NULL,
+	MESSAGE_ACK_TIME DATETIME DEFAULT NULL ,
+  MESSAGE_ACK_EVENT_ID VARCHAR(100),
+	MESSAGE_ACK_STATUS VARCHAR(10) ,
+	MESSAGE_ACK_DETAILS VARCHAR(2500) ,
+	CDATA VARCHAR(2500) ,
+	DURATION_IN_MINUTE BIGINT,
+  RECORD_INSERT_TIME DATETIME NOT NULL,
+	RECORD_LAST_UPDATED DATETIME NOT NULL
+) ENGINE=InnoDB;
+
+# copy data over
+SELECT MESSAGE_SEND_ID,
+	PRODUCT_OWNER,
+  PRODUCT_ISBN,
+	MESSAGE_SEND_TIME,
+  MESSAGE_SEND_REF_ID,
+  MESSAGE_SEND_PRIORITY,
+  MESSAGE_SEND_REF_EVENT,
+   MESSAGE_SEND_REF_EVENT_ROLE,
+   MESSAGE_SEND_REF_EVENT_USER,
+   MESSAGE_SEND_REF_EVENT_SOURCE,
+   MESSAGE_SEND_REF_EVENT_TIME,
+	MESSAGE_ACK_TIME,
+  MESSAGE_ACK_EVENT_ID,
+	MESSAGE_ACK_STATUS,
+	MESSAGE_ACK_DETAILS,
+	CDATA,
+	DURATION_IN_MINUTE,
+  RECORD_INSERT_TIME,
+	RECORD_LAST_UPDATED FROM koboid_sla.SLA_MESSAGE_ACK INTO OUTFILE 'C:\\Users\\mhuang\\data_backup\\data.csv'
+  FIELDS TERMINATED BY ','
+  OPTIONALLY ENCLOSED BY '"'
+  LINES TERMINATED BY '\\n' ;
+
+SELECT MESSAGE_SEND_ID,
+	PRODUCT_OWNER,
+  PRODUCT_ISBN,
+	MESSAGE_SEND_TIME,
+  MESSAGE_SEND_REF_ID,
+  MESSAGE_SEND_PRIORITY,
+  MESSAGE_SEND_REF_EVENT,
+   MESSAGE_SEND_REF_EVENT_ROLE,
+   MESSAGE_SEND_REF_EVENT_USER,
+   MESSAGE_SEND_REF_EVENT_SOURCE,
+   MESSAGE_SEND_REF_EVENT_TIME,
+	MESSAGE_ACK_TIME,
+  MESSAGE_ACK_EVENT_ID,
+	MESSAGE_ACK_STATUS,
+	MESSAGE_ACK_DETAILS,
+	CDATA,
+	DURATION_IN_MINUTE,
+  RECORD_INSERT_TIME,
+	RECORD_LAST_UPDATED FROM koboid_sla.SLA_MESSAGE_ACK_HIST INTO OUTFILE 'C:\\Users\\mhuang\\data_backup\\data_hist.csv'
+  FIELDS TERMINATED BY ','
+  OPTIONALLY ENCLOSED BY '"'
+  LINES TERMINATED BY '\\n' ;
+  
+LOAD DATA INFILE 'C:\\Users\\mhuang\\data_backup\\data.csv' INTO TABLE koboid_sla.SLA_MESSAGE_ACK
+  FIELDS TERMINATED BY ','
+  OPTIONALLY ENCLOSED BY '"'
+  LINES TERMINATED BY '\\n' ;
+
+LOAD DATA INFILE 'C:\\Users\\mhuang\\data_backup\\data_hist.csv' INTO TABLE koboid_sla.SLA_MESSAGE_ACK_HIST
+  FIELDS TERMINATED BY ','
+  OPTIONALLY ENCLOSED BY '"'
+  LINES TERMINATED BY '\\n' ;
+  
+#create procedures
+shell > mysql -u koboid -p
+mysql> DELIMITER $$
+mysql> CREATE PROCEDURE archiveMessages()
+mysql> BEGIN
+mysql> (statements here)
+mysql> END $$
+
+#schedule a procedure
+SET GLOBAL event_scheduler = ON; (###this needs to be done with root acc#)
+
+mysql> DELIMITER $$
+mysql> CREATE EVENT doArchive
+mysql> ON SCHEDULE EVERY 1 DAY
+mysql> DO
+mysql> CALL `archiveProc`();
+mysql> $$
